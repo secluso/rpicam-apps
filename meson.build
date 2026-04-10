@@ -91,8 +91,13 @@ rpicam_app = library(
 )
 
 pkg = import('pkgconfig')
-pkg.generate(rpicam_app,
-             version: meson.project_version())
+pkg.generate(
+    name : 'rpicam_app',
+    description : 'rpicam application library',
+    version : meson.project_version(),
+    libraries : ['-lrpicam_app'],
+    libraries_private : ['-lboost_program_options', '-pthread'],
+)
 
 subdir('apps')
 
